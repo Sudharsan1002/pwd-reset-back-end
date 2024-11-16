@@ -1,5 +1,7 @@
 const { verifyToken } = require("../utils/jwt");
 
+
+//FUNCTION TO VALIDATE JWT TOKEN
 const authenticateToken = (req, res, next) => {
     const token = req.headers["logintoken"]
     

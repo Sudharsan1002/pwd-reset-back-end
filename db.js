@@ -12,6 +12,10 @@ if (!MONGODBURI) {
   console.log("Connecting to MongoDB URI:", MONGODBURI); // Debugging
 }
 
+
+
+//FUNCTION TO CREATE DATABASE CONNECTION
+
 async function createDBConnection() {
   try {
     const response = await mongoose.connect(MONGODBURI);

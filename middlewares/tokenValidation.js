@@ -1,5 +1,7 @@
 const usermodel = require("../models/usermodel");
 
+//MIDDLEWARE FUNCTION TO VALIDATE RFEST TOKEN
+
 const TokenValidity = async (req, res, next) => {
   const token = req.query.token || req.body.token;
 
@@ -9,15 +11,15 @@ const TokenValidity = async (req, res, next) => {
   try {
     const foundedUser = await usermodel.findOne({
       resettoken: token,
-      tokenexpiry: { $gt: Date.now() },
+      tokenexpiry: { $gt: Date.now() },                   //VERIFYING WHETHER THE USER HAS A VALID TOKEN OR NOT
     });
 
     if (!foundedUser) {
       return res.status(400).json({ message: "Invalid or expired token", success: false });
     }
-    req.user = foundedUser;
+    req.user = foundedUser;        //STORING FOUNDED USER  AS REQUESTED USER
     next();
-    // return res.status(200).json({ message: "Token is valid", success: true });
+    
   } catch (err) {
     return res
       .status(500)
