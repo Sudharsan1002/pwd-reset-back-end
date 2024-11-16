@@ -10,7 +10,7 @@ const authenticateToken = (req, res, next) => {
     }
     try {
         const decrypted = verifyToken(token)
-        req.user = decoded
+        req.user = decrypted
         next()
     } catch (error) {
         return res.status(403).json({ message: error.message });
