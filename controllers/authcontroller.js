@@ -72,7 +72,7 @@ authrouter.post("/forgotpassword", async (req, res) => {
       matchedUser.tokenexpiry = Date.now() + 3600000;
       await matchedUser.save();
 
-      const resetUrl = `http://localhost:5173/resetpassword?token=${resettoken}`;
+      const resetUrl = `https://pass-reset-flow-fe.netlify.app/resetpassword?token=${resettoken}`;
       const subject = "Password reset link";
       const html = `<p>You requested a password reset. Click <a href="${resetUrl}">here</a> to reset your password. The link expires in 1 hour.</p>`;
       await sendMail(email, subject, html);
